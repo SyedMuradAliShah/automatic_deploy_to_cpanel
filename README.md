@@ -12,6 +12,33 @@ This repository will be used to "How to Deploy Private GitHub Repositories to cP
 
 *Workflow file name: cPanelDeployment.yml*
 
+**For new version of repo**
+```
+name: Publish Website to CPanel
+on:
+  push:
+    branches:
+      - main
+jobs:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.1.0
+      with:
+        fetch-depth: 2
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      with:
+        ftp-server: ${{ secrets.FTP_SERVER }}
+        ftp-username: ${{ secrets.FTP_USERNAME }}
+        ftp-password: ${{ secrets.FTP_PASSWORD }}
+```
+In new version the branch name change from master to main.
+
+
+
+**For old version**
 ```
 name: Publish Website to CPanel
 on:
